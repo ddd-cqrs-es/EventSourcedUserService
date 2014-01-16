@@ -1,0 +1,17 @@
+C:\GitHub\EventSourcedUserService\UserService.DomainModel.Tests\bin\Debug\UserService.DomainModel.Tests.dll
+C:\GitHub\EventSourcedUserService\UserService.DomainModel.Tests\bin\Debug\UserService.DomainModel.Tests.pdb
+C:\GitHub\EventSourcedUserService\UserService.DomainModel.Tests\bin\Debug\AggregateSource.dll
+C:\GitHub\EventSourcedUserService\UserService.DomainModel.Tests\bin\Debug\AggregateSource.Testing.dll
+C:\GitHub\EventSourcedUserService\UserService.DomainModel.Tests\bin\Debug\AggregateSource.Testing.NUnit.dll
+C:\GitHub\EventSourcedUserService\UserService.DomainModel.Tests\bin\Debug\KellermanSoftware.Compare-NET-Objects.dll
+C:\GitHub\EventSourcedUserService\UserService.DomainModel.Tests\bin\Debug\nunit.framework.dll
+C:\GitHub\EventSourcedUserService\UserService.DomainModel.Tests\bin\Debug\UserService.DomainModel.dll
+C:\GitHub\EventSourcedUserService\UserService.DomainModel.Tests\bin\Debug\UserService.DomainModel.pdb
+C:\GitHub\EventSourcedUserService\UserService.DomainModel.Tests\bin\Debug\AggregateSource.xml
+C:\GitHub\EventSourcedUserService\UserService.DomainModel.Tests\bin\Debug\AggregateSource.Testing.xml
+C:\GitHub\EventSourcedUserService\UserService.DomainModel.Tests\bin\Debug\AggregateSource.Testing.NUnit.xml
+C:\GitHub\EventSourcedUserService\UserService.DomainModel.Tests\bin\Debug\KellermanSoftware.Compare-NET-Objects.xml
+C:\GitHub\EventSourcedUserService\UserService.DomainModel.Tests\bin\Debug\nunit.framework.xml
+C:\GitHub\EventSourcedUserService\UserService.DomainModel.Tests\obj\Debug\UserService.DomainModel.Tests.csprojResolveAssemblyReference.cache
+C:\GitHub\EventSourcedUserService\UserService.DomainModel.Tests\obj\Debug\UserService.DomainModel.Tests.dll
+C:\GitHub\EventSourcedUserService\UserService.DomainModel.Tests\obj\Debug\UserService.DomainModel.Tests.pdb
