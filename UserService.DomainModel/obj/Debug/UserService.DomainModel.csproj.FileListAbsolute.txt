@@ -1,7 +1,0 @@
-C:\GitHub\EventSourcedUserService\UserService.DomainModel\bin\Debug\UserService.DomainModel.dll
-C:\GitHub\EventSourcedUserService\UserService.DomainModel\bin\Debug\UserService.DomainModel.pdb
-C:\GitHub\EventSourcedUserService\UserService.DomainModel\bin\Debug\AggregateSource.dll
-C:\GitHub\EventSourcedUserService\UserService.DomainModel\bin\Debug\AggregateSource.xml
-C:\GitHub\EventSourcedUserService\UserService.DomainModel\obj\Debug\UserService.DomainModel.csprojResolveAssemblyReference.cache
-C:\GitHub\EventSourcedUserService\UserService.DomainModel\obj\Debug\UserService.DomainModel.dll
-C:\GitHub\EventSourcedUserService\UserService.DomainModel\obj\Debug\UserService.DomainModel.pdb
