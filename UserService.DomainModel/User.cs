@@ -12,7 +12,9 @@ namespace UserService.DomainModel
         private UserId _id;
         private bool _disabled;
         protected List<UserId> _friends;
-        protected List<WishListItem> _wishList; 
+        protected List<WishListItem> _wishList;
+
+        public UserId Id { get { return _id; } }
 
         //construction
         public static readonly Func<User> Factory = () => new User();
