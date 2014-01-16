@@ -69,8 +69,24 @@ namespace UserService.DomainModel.Tests
 
             new CommandScenarioFor<User>(User.Factory)
             .Given(UserEvents.Created(email, id, metroId, false))
-            .When(user => user.AddFriend(command))
+            .When(user => user.AddFriend(new UserId(command.Gpid), new UserId(command.FriendsGpid), command.FName, command.LName))
             .Then(UserEvents.NewFriend(id, friendId, fname, lname))
+            .Assert();
+        }
+
+        [Test]
+        public void AddWishListItemToUser()
+        {
+            var id = new UserId(Guid.NewGuid());
+            var email = "person@domain.com";
+            var metroId = 11;
+            var wishlistItemId = new WishListItemId(Guid.NewGuid());
+            var restoId = new RestaurantId(Guid.NewGuid());
+
+            new CommandScenarioFor<User>(User.Factory)
+            .Given(UserEvents.Created(email, id, metroId, false))
+            .When(user => user.AddWishListItem(id, wishlistItemId, restoId, "some notes"))
+            .Then(UserEvents.WishListItemAdded(id, wishlistItemId, restoId, "some notes"))
             .Assert();
         }
     }

@@ -25,6 +25,11 @@ namespace UserService.DomainModel.Events
             return new UserHasNewFriend(gpid, friend, fName, lName);
         }
 
+        public static UserHasNewWishListItem WishListItemAdded(UserId userId, WishListItemId wishlistItemId, 
+            RestaurantId restoId, string notes)
+        {
+            return new UserHasNewWishListItem(userId, wishlistItemId, restoId, notes);
+        }
 
         public class BasicUserCreated
         {
@@ -47,6 +52,16 @@ namespace UserService.DomainModel.Events
             public readonly Guid Gpid;
 
             public UserDisabled(Guid gpid)
+            {
+                Gpid = gpid;
+            }
+        }
+
+        public class UserEnabled
+        {
+            public readonly Guid Gpid;
+
+            public UserEnabled(Guid gpid)
             {
                 Gpid = gpid;
             }
@@ -80,6 +95,22 @@ namespace UserService.DomainModel.Events
                 FriendsGpid = friendsGpid;
                 FName = fName;
                 LName = lName;
+            }
+        }
+
+        public class UserHasNewWishListItem
+        {
+            public readonly Guid Gpid;
+            public readonly Guid WishListItemId;
+            public readonly Guid RestaurantId;
+            public readonly string Notes;
+
+            public UserHasNewWishListItem(Guid gpid, Guid wishListItemId, Guid restaurantId, string notes)
+            {
+                Gpid = gpid;
+                WishListItemId = wishListItemId;
+                RestaurantId = restaurantId;
+                Notes = notes;
             }
         }
     }

@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using AggregateSource;
-using UserService.DomainModel.Commands;
 using UserService.DomainModel.Events;
 
 namespace UserService.DomainModel
@@ -14,7 +11,8 @@ namespace UserService.DomainModel
         //state
         private UserId _id;
         private bool _disabled;
-        protected List<UserId> _friends; 
+        protected List<UserId> _friends;
+        protected List<WishListItem> _wishList; 
 
         //construction
         public static readonly Func<User> Factory = () => new User();
@@ -24,14 +22,14 @@ namespace UserService.DomainModel
             //register the event handlers
             Register<UserEvents.BasicUserCreated>(When);
             Register<UserEvents.UserDisabled>(When);
-            Register<UserEvents.UserHasNewFriend>(When);
+            Register<UserEvents.UserHasNewFriend>(When);Register<UserEvents.UserHasNewWishListItem>(When);
         }
 
         public static User CreateBasicUser(UserId gpid, string emailAddress, int metroId)
         {
             // do any business logic to protect invariants
             // note: validation, like email address is well formed, is not something that should be done in here - 
-            // that should be taken care of before this method is invoked, using validators
+            // that should be taken care of before this method is invoked
             var user = Factory();
             user.ApplyChange(UserEvents.Created(emailAddress, gpid, metroId, false));
             return user;
@@ -45,13 +43,42 @@ namespace UserService.DomainModel
             ApplyChange(UserEvents.Disabled(_id));
         }
 
-        public void AddFriend(AddFriendToUser command)
+        public void AddFriend(UserId userId, UserId friendsId, string firstname, string lastName)
         {
             if(_disabled)
                 throw new AggregateException("Can not add a friend to a disabled user.");
 
-            if(!_friends.Contains(new UserId(command.FriendsGpid)))
-                ApplyChange(UserEvents.NewFriend(_id, new UserId(command.FriendsGpid), command.FName, command.LName));
+            if(IDontHaveAnyFriends() || ThatIsANewFriend(userId))
+                ApplyChange(UserEvents.NewFriend(_id, friendsId, firstname, lastName));
+        }
+
+        private bool IDontHaveAnyFriends()
+        {
+            return _friends == null;
+        }
+
+        private bool ThatIsANewFriend(UserId friendId)
+        {
+            return !_friends.Contains(friendId);
+        }
+
+        public void AddWishListItem(UserId id, WishListItemId wishlistItemId, RestaurantId restoId, string someNotes)
+        {
+            if (_disabled)
+                throw new AggregateException("Can not add a to the wish list of a disabled user.");
+
+            if (MyWishListIsEmpty() || ThatResturantIsNotInMyWishList(restoId))
+                ApplyChange(UserEvents.WishListItemAdded(id, wishlistItemId, restoId, someNotes));
+        }
+
+        private bool MyWishListIsEmpty()
+        {
+            return _wishList == null;
+        }
+
+        private bool ThatResturantIsNotInMyWishList(RestaurantId restoId)
+        {
+            return !_wishList.Any(w => w.RestoId.Equals(restoId));
         }
 
         //event handlers
@@ -69,7 +96,20 @@ namespace UserService.DomainModel
 
         protected void When(UserEvents.UserHasNewFriend @event)
         {
+            if(IDontHaveAnyFriends())
+                _friends = new List<UserId>();
+
             _friends.Add(new UserId(@event.FriendsGpid));
+        }
+
+        protected void When(UserEvents.UserHasNewWishListItem @event)
+        {
+            if(MyWishListIsEmpty())
+                _wishList = new List<WishListItem>();
+
+            var item = new WishListItem(ApplyChange);
+            item.Route(@event);
+            _wishList.Add(item);
         }
     }
 
