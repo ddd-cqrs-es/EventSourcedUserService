@@ -3,6 +3,7 @@ using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
 using UserService.DomainModel.Commands;
 using UserService.Infrastructure;
+using UserService.Infrastructure.CommandHandlers;
 
 namespace UserService.Api.WindsorInstallers
 {
@@ -12,7 +13,23 @@ namespace UserService.Api.WindsorInstallers
         {
             container.Register(Component
                                    .For<ICommandHandler<CreateBasicUser>>()
-                                   .ImplementedBy<UserCommandHandler>());
+                                   .ImplementedBy<CreateBasicUserCommandHandler>()
+                                   .LifestyleTransient());
+
+            container.Register(Component
+                                   .For<ICommandHandler<AddWishListItem>>()
+                                   .ImplementedBy<AddWishListItemCommandHandler>()
+                                   .LifestyleTransient());
+
+            container.Register(Component
+                                   .For<ICommandHandler<AddFriendToUser>>()
+                                   .ImplementedBy<AddFriendToUserCommandHandler>()
+                                   .LifestyleTransient());
+
+            container.Register(Component
+                                   .For<ICommandHandler<DisableUser>>()
+                                   .ImplementedBy<DisableUserCommandHandler>()
+                                   .LifestyleTransient());
         }
     }
 }

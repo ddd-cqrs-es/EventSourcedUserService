@@ -54,12 +54,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommandHandlerBase.cs" />
+    <Compile Include="CommandHandlers\AddFriendToUserCommandHandler.cs" />
+    <Compile Include="CommandHandlers\AddWishListItemCommandHandler.cs" />
+    <Compile Include="CommandHandlers\CommandHandlerBase.cs" />
+    <Compile Include="CommandHandlers\DisableUserCommandHandler.cs" />
     <Compile Include="EventStoreUnitOfWorkHandler.cs" />
     <Compile Include="RepositoryFactory.cs" />
     <Compile Include="ServiceInterfaces.cs" />
     <Compile Include="Tester.cs" />
-    <Compile Include="UserCommandHandler.cs" />
+    <Compile Include="CommandHandlers\CreateBasicUserCommandHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

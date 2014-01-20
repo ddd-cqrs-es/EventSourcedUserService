@@ -2,7 +2,7 @@
 {
     public interface ICommandHandler<TCommand>
     {
-        void HandleCommand(TCommand command);
+        void HandleCommand(TCommand itemCommand);
     }
 
     public interface Handles<TCommand>

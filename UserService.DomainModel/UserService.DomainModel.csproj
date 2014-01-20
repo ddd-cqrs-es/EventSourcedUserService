@@ -39,7 +39,9 @@
   <ItemGroup>
     <Compile Include="AggregateRootEntity.cs" />
     <Compile Include="Commands\AddFriendsToUser.cs" />
+    <Compile Include="Commands\AddWishListItem.cs" />
     <Compile Include="Commands\CreateBasicUser.cs" />
+    <Compile Include="Commands\DisableUser.cs" />
     <Compile Include="Entity.cs" />
     <Compile Include="Events\UserEvents.cs" />
     <Compile Include="RestaurantId.cs" />

@@ -24,7 +24,7 @@ namespace UserService.Api.WindsorInstallers
                                    .LifestyleSingleton());
 
             container.Register(Component
-                                   .For<Repository<User>>()
+                                   .For<IRepository<User>>()
                                    .UsingFactoryMethod(
                                        () =>
                                        RepositoryFactory.Create(container.Resolve<UnitOfWork>(),

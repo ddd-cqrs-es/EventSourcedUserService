@@ -7,6 +7,7 @@ using AggregateSource;
 using EventStore.ClientAPI;
 using EventStore.ClientAPI.SystemData;
 using UserService.DomainModel.Commands;
+using UserService.Infrastructure.CommandHandlers;
 
 namespace UserService.Infrastructure
 {
@@ -18,7 +19,7 @@ namespace UserService.Infrastructure
             var credentials = new UserCredentials("admin", "changeit");
             var unitOfWork = new UnitOfWork();
             var repository = RepositoryFactory.Create(unitOfWork, connection, credentials);
-            ICommandHandler<CreateBasicUser> handler = new UserCommandHandler(connection, repository, unitOfWork);
+            ICommandHandler<CreateBasicUser> handler = new CreateBasicUserCommandHandler(connection, repository, unitOfWork);
 
             //handler.HandleCommand();
         }

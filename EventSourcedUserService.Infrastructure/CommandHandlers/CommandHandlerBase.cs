@@ -7,7 +7,7 @@ using EventStore.ClientAPI;
 using Newtonsoft.Json;
 using UserService.DomainModel;
 
-namespace UserService.Infrastructure
+namespace UserService.Infrastructure.CommandHandlers
 {
     public abstract class CommandHandlerBase<TCommand> : ICommandHandler<TCommand>
     {
@@ -37,9 +37,9 @@ namespace UserService.Infrastructure
             _unitOfWork = unitOfWork;
         }
 
-        public void HandleCommand(TCommand command)
+        public void HandleCommand(TCommand itemCommand)
         {
-            Handle(command);
+            Handle(itemCommand);
             WriteUnitOfWork(_unitOfWork);
         }
 
