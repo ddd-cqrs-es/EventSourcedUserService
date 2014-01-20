@@ -1,0 +1,31 @@
+﻿using System.Net;
+using Castle.MicroKernel.Registration;
+using Castle.MicroKernel.SubSystems.Configuration;
+using Castle.Windsor;
+using EventStore.ClientAPI;
+using EventStore.ClientAPI.SystemData;
+
+namespace UserService.Api.WindsorInstallers
+{
+    public class EventStoreInstaller : IWindsorInstaller
+    {
+        public void Install(IWindsorContainer container, IConfigurationStore store)
+        {
+            container.Register(Component
+                                   .For<IEventStoreConnection>()
+                                   .UsingFactoryMethod(() =>
+                                       {
+                                           var credentials = new UserCredentials("admin", "changeit");
+                                           var connection = EventStoreConnection.Create(
+                                               ConnectionSettings.Create().
+                                                                  UseConsoleLogger().
+                                                                  SetDefaultUserCredentials(
+                                                                      credentials),
+                                               new IPEndPoint(IPAddress.Loopback, 1113),
+                                               "UserServiceConnection");
+                                           connection.Connect();
+                                           return connection;
+                                       }));
+        }
+    }
+}
