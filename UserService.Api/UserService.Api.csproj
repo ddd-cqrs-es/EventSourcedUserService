@@ -42,6 +42,18 @@
     <Reference Include="AggregateSource">
       <HintPath>..\packages\AggregateSource.0.0.285\lib\net45\AggregateSource.dll</HintPath>
     </Reference>
+    <Reference Include="AggregateSource.EventStore">
+      <HintPath>..\packages\AggregateSource.EventStore.0.0.285\lib\net45\AggregateSource.EventStore.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Core">
+      <HintPath>..\packages\Castle.Core.3.2.2\lib\net45\Castle.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Castle.Windsor">
+      <HintPath>..\packages\Castle.Windsor.3.2.1\lib\net45\Castle.Windsor.dll</HintPath>
+    </Reference>
+    <Reference Include="EventStore.ClientAPI">
+      <HintPath>..\packages\EventStore.Client.2.0.2\lib\net40\EventStore.ClientAPI.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -164,6 +176,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Controllers\UserApiController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Entity.cs" />
@@ -171,6 +184,11 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WindsorInstallers\CommandHandlersInstaller.cs" />
+    <Compile Include="WindsorInstallers\ControllersInstaller.cs" />
+    <Compile Include="WindsorInstallers\EventStoreInstaller.cs" />
+    <Compile Include="WindsorInstallers\RepositoryInstaller.cs" />
+    <Compile Include="WindsorInstallers\WindsorCompositionRoot.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
@@ -291,6 +309,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EventSourcedUserService.Infrastructure\UserService.Infrastructure.csproj">
+      <Project>{0AC97F6C-0048-4F5B-8A97-AD834920C349}</Project>
+      <Name>UserService.Infrastructure</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UserService.DomainModel\UserService.DomainModel.csproj">
+      <Project>{C14F0D16-7086-47C3-A533-2D38F859835F}</Project>
+      <Name>UserService.DomainModel</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
