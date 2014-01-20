@@ -149,5 +149,10 @@ namespace UserService.DomainModel
         {
             return id._gpid;
         }
+
+        public override string ToString()
+        {
+            return _gpid.ToString();
+        }
     }
 }

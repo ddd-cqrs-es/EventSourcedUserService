@@ -27,16 +27,6 @@ namespace UserService.Infrastructure
                 new IPEndPoint(IPAddress.Loopback, 1113),
                 "UserServiceConnection");
             _connection.Connect();
-
-//            var repository = new Repository<ShoppingCart>(
-//                ShoppingCart.Factory,
-//                unitOfWork,
-//                connection,
-//                new EventReaderConfiguration(
-//                    new SliceSize(512),
-//                    new JsonDeserializer(),
-//                    new PassThroughStreamNameResolver(),
-//                    new FixedStreamUserCredentialsResolver(credentials)));
         }
 
         public void Handle(UnitOfWork unitOfWork)
@@ -70,7 +60,7 @@ namespace UserService.Infrastructure
             {
                 using (var writer = new StreamWriter(stream))
                 {
-                    JsonSerializer.CreateDefault().Serialize(writer, @event);
+                    JsonSerializer.Create().Serialize(writer, @event);
                     writer.Flush();
                 }
                 return stream.ToArray();

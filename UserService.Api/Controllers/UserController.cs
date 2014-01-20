@@ -7,20 +7,20 @@ using UserService.Infrastructure;
 
 namespace UserService.Api.Controllers
 {
-    public class UserApiController : ApiController
+    public class UserController : ApiController
     {
         // Normally you would use some type of command router or bus to dispatch
         // the commands to the relevant consumer.
         private readonly ICommandHandler<CreateBasicUser> _createUserCommandHandler;
         private readonly ICommandHandler<AddFriendToUser> _addFriendCommandHandler;
 
-        public UserApiController(ICommandHandler<CreateBasicUser> createUserCommandHandler, ICommandHandler<AddFriendToUser> addFriendCommandHandler)
+        public UserController(ICommandHandler<CreateBasicUser> createUserCommandHandler, ICommandHandler<AddFriendToUser> addFriendCommandHandler)
         {
             _createUserCommandHandler = createUserCommandHandler;
             _addFriendCommandHandler = addFriendCommandHandler;
         }
 
-        public HttpResponseMessage PostCreateBarebonesUser(string email, string version, int? metroid = null)
+        public HttpResponseMessage PostCreateBarebonesUser(string email, int? metroid = null)
         {
             try
             {
@@ -31,7 +31,7 @@ namespace UserService.Api.Controllers
             }
             catch (Exception ex)
             {
-                var msg = string.Format("Error Occured on calling CreateBareboneUser{0}()", version);
+                var msg = string.Format("Error Occured on calling CreateBareboneUser()");
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, msg);
             }
         }

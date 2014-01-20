@@ -14,6 +14,12 @@ namespace UserService.Infrastructure.CommandHandlers
         private readonly IRepository<User> _repository;
         private readonly UnitOfWork _unitOfWork;
         private readonly IEventStoreConnection _connection;
+        private readonly Func<UserId, string> _streamNameDelegate;
+
+        public Func<UserId, string> StreamNameFactory
+        {
+            get { return _streamNameDelegate; }
+        }
 
         protected IRepository<User> Repository
         {
@@ -30,11 +36,12 @@ namespace UserService.Infrastructure.CommandHandlers
             get { return _connection; }
         }
 
-        protected CommandHandlerBase(IEventStoreConnection connection, IRepository<User> repository, UnitOfWork unitOfWork)
+        protected CommandHandlerBase(IEventStoreConnection connection, IRepository<User> repository, UnitOfWork unitOfWork, Func<UserId, string> streamNameDelegate)
         {
             _connection = connection;
             _repository = repository;
             _unitOfWork = unitOfWork;
+            _streamNameDelegate = streamNameDelegate;
         }
 
         public void HandleCommand(TCommand itemCommand)
@@ -77,7 +84,7 @@ namespace UserService.Infrastructure.CommandHandlers
             {
                 using (var writer = new StreamWriter(stream))
                 {
-                    JsonSerializer.CreateDefault().Serialize(writer, @event);
+                    JsonSerializer.Create().Serialize(writer, @event);
                     writer.Flush();
                 }
                 return stream.ToArray();

@@ -26,7 +26,8 @@ namespace UserService.Api
             container.Install(
                 new ControllersInstaller(),
                 new EventStoreInstaller(),
-                new RepositoryInstaller());
+                new RepositoryInstaller(),
+                new CommandHandlersInstaller());
         }
 
         protected void Application_Start()

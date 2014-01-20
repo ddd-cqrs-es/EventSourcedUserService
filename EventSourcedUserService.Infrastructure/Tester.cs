@@ -19,7 +19,7 @@ namespace UserService.Infrastructure
             var credentials = new UserCredentials("admin", "changeit");
             var unitOfWork = new UnitOfWork();
             var repository = RepositoryFactory.Create(unitOfWork, connection, credentials);
-            ICommandHandler<CreateBasicUser> handler = new CreateBasicUserCommandHandler(connection, repository, unitOfWork);
+            //ICommandHandler<CreateBasicUser> handler = new CreateBasicUserCommandHandler(connection, repository, unitOfWork);
 
             //handler.HandleCommand();
         }
