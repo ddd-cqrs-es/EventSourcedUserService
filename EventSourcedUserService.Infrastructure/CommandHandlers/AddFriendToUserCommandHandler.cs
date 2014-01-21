@@ -19,7 +19,6 @@ namespace UserService.Infrastructure.CommandHandlers
             var user = Repository.Get(StreamNameFactory(gpid));
 
             user.AddFriend(gpid, new UserId(command.FriendsGpid), command.FName, command.LName);
-            Repository.Add(StreamNameFactory(user.Id), user);
         }
     }
 }

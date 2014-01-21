@@ -19,7 +19,6 @@ namespace UserService.Infrastructure.CommandHandlers
             var user = Repository.Get(StreamNameFactory(gpid));
 
             user.Disable();
-            Repository.Add(StreamNameFactory(gpid), user);
         }
     }
 }

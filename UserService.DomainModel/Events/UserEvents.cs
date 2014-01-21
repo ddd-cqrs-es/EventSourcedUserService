@@ -77,8 +77,8 @@ namespace UserService.DomainModel.Events
             public readonly int? BirthdayMonth;
             public readonly int? BirthdayYear;
 
-            public UserHasNewFriend(Guid gpid, Guid friendsGpid, string fName, string lName, int? birthdayDay, 
-                int? birthdayMonth, int? birthdayYear)
+            public UserHasNewFriend(Guid gpid, Guid friendsGpid, string fName, string lName, int? birthdayDay = null, 
+                int? birthdayMonth = null, int? birthdayYear = null)
             {
                 Gpid = gpid;
                 FriendsGpid = friendsGpid;
@@ -87,14 +87,6 @@ namespace UserService.DomainModel.Events
                 BirthdayDay = birthdayDay;
                 BirthdayMonth = birthdayMonth;
                 BirthdayYear = birthdayYear;
-            }
-
-            public UserHasNewFriend(Guid gpid, Guid friendsGpid, string fName, string lName)
-            {
-                Gpid = gpid;
-                FriendsGpid = friendsGpid;
-                FName = fName;
-                LName = lName;
             }
         }
 

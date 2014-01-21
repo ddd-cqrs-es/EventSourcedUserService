@@ -55,9 +55,8 @@ namespace UserService.Infrastructure.CommandHandlers
 
         private void WriteUnitOfWork(UnitOfWork unitOfWork)
         {
-            var affected = unitOfWork.GetChanges().Single();
-
-            Write(new[] { affected });
+            var affected = unitOfWork.GetChanges();
+            Write(affected);
         }
 
         private void Write(IEnumerable<Aggregate> affected)
@@ -71,7 +70,7 @@ namespace UserService.Infrastructure.CommandHandlers
                               Select(_ =>
                                      new EventData(
                                          Guid.NewGuid(),
-                                         _.GetType().Name,
+                                         _.GetType().FullName,
                                          true,
                                          ToJsonByteArray(_),
                                          new byte[0])));

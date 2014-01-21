@@ -27,7 +27,7 @@ namespace UserService.Infrastructure
         {
             public IEnumerable<object> Deserialize(ResolvedEvent resolvedEvent)
             {
-                var type = Type.GetType(resolvedEvent.Event.EventType, true);
+                var type = Type.GetType(resolvedEvent.Event.EventType + ", UserService.DomainModel", true);
                 using (var stream = new MemoryStream(resolvedEvent.Event.Data))
                 {
                     using (var reader = new StreamReader(stream))
