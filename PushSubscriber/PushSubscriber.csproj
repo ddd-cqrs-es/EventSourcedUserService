@@ -4,14 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0AC97F6C-0048-4F5B-8A97-AD834920C349}</ProjectGuid>
+    <ProjectGuid>{8FC5F15C-359E-46D6-B378-D37E469400C9}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>UserService.Infrastructure</RootNamespace>
-    <AssemblyName>UserService.Infrastructure</AssemblyName>
+    <RootNamespace>PushSubscriber</RootNamespace>
+    <AssemblyName>PushSubscriber</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -21,7 +20,6 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -30,24 +28,11 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AggregateSource">
-      <HintPath>..\packages\AggregateSource.0.0.285\lib\net45\AggregateSource.dll</HintPath>
-    </Reference>
-    <Reference Include="AggregateSource.EventStore">
-      <HintPath>..\packages\AggregateSource.EventStore.0.0.285\lib\net45\AggregateSource.EventStore.dll</HintPath>
-    </Reference>
-    <Reference Include="EventStore.ClientAPI">
-      <HintPath>..\packages\EventStore.Client.2.0.2\lib\net40\EventStore.ClientAPI.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Newtonsoft.Json.5.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -56,26 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CommandHandlers\AddFriendToUserCommandHandler.cs" />
-    <Compile Include="CommandHandlers\AddWishListItemCommandHandler.cs" />
-    <Compile Include="CommandHandlers\CommandHandlerBase.cs" />
-    <Compile Include="CommandHandlers\DisableUserCommandHandler.cs" />
-    <Compile Include="EventPublisher\PushPublisher.cs" />
-    <Compile Include="EventStoreUnitOfWorkHandler.cs" />
-    <Compile Include="RepositoryFactory.cs" />
-    <Compile Include="ServiceInterfaces.cs" />
-    <Compile Include="Tester.cs" />
-    <Compile Include="CommandHandlers\CreateBasicUserCommandHandler.cs" />
+    <Compile Include="PushSubscriberCallback.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\UserService.DomainModel\UserService.DomainModel.csproj">
-      <Project>{C14F0D16-7086-47C3-A533-2D38F859835F}</Project>
-      <Name>UserService.DomainModel</Name>
-    </ProjectReference>
+    <Compile Include="PushSubscriber.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

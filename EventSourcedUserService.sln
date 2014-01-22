@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserService.DomainModel.Tes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserService.Infrastructure", "EventSourcedUserService.Infrastructure\UserService.Infrastructure.csproj", "{0AC97F6C-0048-4F5B-8A97-AD834920C349}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PushSubscriber", "PushSubscriber\PushSubscriber.csproj", "{8FC5F15C-359E-46D6-B378-D37E469400C9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -31,6 +33,10 @@ Global
 		{0AC97F6C-0048-4F5B-8A97-AD834920C349}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0AC97F6C-0048-4F5B-8A97-AD834920C349}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0AC97F6C-0048-4F5B-8A97-AD834920C349}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8FC5F15C-359E-46D6-B378-D37E469400C9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8FC5F15C-359E-46D6-B378-D37E469400C9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8FC5F15C-359E-46D6-B378-D37E469400C9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8FC5F15C-359E-46D6-B378-D37E469400C9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
