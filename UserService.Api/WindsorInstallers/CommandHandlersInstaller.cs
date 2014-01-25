@@ -37,6 +37,11 @@ namespace UserService.Api.WindsorInstallers
                                    .For<ICommandHandler<DisableUser>>()
                                    .ImplementedBy<DisableUserCommandHandler>()
                                    .LifestyleTransient());
+
+            container.Register(Component
+                                   .For<ICommandHandler<EnableUser>>()
+                                   .ImplementedBy<EnableUserCommandHandler>()
+                                   .LifestyleTransient());
         }
     }
 }

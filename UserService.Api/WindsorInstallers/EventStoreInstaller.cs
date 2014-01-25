@@ -11,6 +11,8 @@ namespace UserService.Api.WindsorInstallers
     {
         public void Install(IWindsorContainer container, IConfigurationStore store)
         {
+            const string ipAddress = "192.168.1.80";
+
             container.Register(Component
                                    .For<IEventStoreConnection>()
                                    .UsingFactoryMethod(() =>
@@ -21,7 +23,7 @@ namespace UserService.Api.WindsorInstallers
                                                                   UseConsoleLogger().
                                                                   SetDefaultUserCredentials(
                                                                       credentials),
-                                               new IPEndPoint(IPAddress.Loopback, 1113),
+                                               new IPEndPoint(IPAddress.Parse(ipAddress), 1113),
                                                "UserServiceConnection");
                                            connection.Connect();
                                            return connection;

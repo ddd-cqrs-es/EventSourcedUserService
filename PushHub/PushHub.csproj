@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C14F0D16-7086-47C3-A533-2D38F859835F}</ProjectGuid>
+    <ProjectGuid>{BE479588-96D2-4EBC-9F57-03E6B0BF4D55}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>UserService.DomainModel</RootNamespace>
-    <AssemblyName>UserService.DomainModel</AssemblyName>
+    <RootNamespace>PushHub</RootNamespace>
+    <AssemblyName>PushHub</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -30,25 +30,25 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AggregateSource">
-      <HintPath>..\packages\AggregateSource.0.0.285\lib\net45\AggregateSource.dll</HintPath>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AggregateRootEntity.cs" />
-    <Compile Include="Commands\AddFriendsToUser.cs" />
-    <Compile Include="Commands\AddWishListItem.cs" />
-    <Compile Include="Commands\CreateBasicUser.cs" />
-    <Compile Include="Commands\DisableUser.cs" />
-    <Compile Include="Commands\EnableUser.cs" />
-    <Compile Include="Entity.cs" />
-    <Compile Include="Events\UserEvents.cs" />
-    <Compile Include="RestaurantId.cs" />
-    <Compile Include="User.cs" />
+    <Compile Include="Hub.cs" />
+    <Compile Include="IFeedProvider.cs" />
+    <Compile Include="ISubscriptionVerifier.cs" />
+    <Compile Include="NewSubscriber.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="WishListItem.cs" />
+    <Compile Include="Subscriber.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

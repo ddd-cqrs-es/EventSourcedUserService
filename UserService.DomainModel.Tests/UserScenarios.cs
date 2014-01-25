@@ -57,6 +57,21 @@ namespace UserService.DomainModel.Tests
         }
 
         [Test]
+        public void Enable()
+        {
+            var id = new UserId(Guid.NewGuid());
+            var email = "person@domain.com";
+            var metroId = 11;
+
+            new CommandScenarioFor<User>(User.Factory)
+                .Given(UserEvents.Created(email, id, metroId, false))
+                .Given(UserEvents.Disabled(id))
+                .When(user => user.Enable())
+                .Then(UserEvents.Enabled(id))
+                .Assert();
+        }
+
+        [Test]
         public void AddFriendsToUser()
         {
             var id = new UserId(Guid.NewGuid());

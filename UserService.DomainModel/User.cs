@@ -24,7 +24,9 @@ namespace UserService.DomainModel
             //register the event handlers
             Register<UserEvents.BasicUserCreated>(When);
             Register<UserEvents.UserDisabled>(When);
-            Register<UserEvents.UserHasNewFriend>(When);Register<UserEvents.UserHasNewWishListItem>(When);
+            Register<UserEvents.UserHasNewFriend>(When);
+            Register<UserEvents.UserHasNewWishListItem>(When);
+            Register<UserEvents.UserEnabled>(When);
         }
 
         public static User CreateBasicUser(UserId gpid, string emailAddress, int metroId)
@@ -43,6 +45,14 @@ namespace UserService.DomainModel
                 throw new AggregateException(string.Format("User {0} is already disabled", _id));
 
             ApplyChange(UserEvents.Disabled(_id));
+        }
+
+        public void Enable()
+        {
+            if(!_disabled)
+                throw new AggregateException(string.Format("User {0} is already enabled", _id));
+
+            ApplyChange(UserEvents.Enabled(_id));
         }
 
         public void AddFriend(UserId userId, UserId friendsId, string firstname, string lastName)
@@ -94,6 +104,11 @@ namespace UserService.DomainModel
         protected void When(UserEvents.UserDisabled @event)
         {
             _disabled = true;
+        }
+
+        protected void When(UserEvents.UserEnabled @event)
+        {
+            _disabled = false;
         }
 
         protected void When(UserEvents.UserHasNewFriend @event)

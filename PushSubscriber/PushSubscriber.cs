@@ -21,7 +21,7 @@ namespace PushSubscriber
 
     public static class PuSHSubscriber
     {
-        public const string DefaultSubscribeHub = "http://192.168.1.86:4567/subscribe";
+        public const string DefaultSubscribeHub = "http://192.168.1.86:4567";
 
         // for a permanent subscription, specify 0 for subscribeSeconds
         public static HttpStatusCode Subscribe(string hubUrl, string callback,
@@ -90,6 +90,7 @@ namespace PushSubscriber
             catch (WebException wex)
             {
                 Debug.WriteLine(string.Format("Exception getting response.  Status = {0}", wex.Status));
+                Debug.Write(wex);
                 if (wex.Response != null)
                 {
                     HttpWebResponse resp = wex.Response as HttpWebResponse;

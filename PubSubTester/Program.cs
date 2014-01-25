@@ -7,10 +7,10 @@ namespace PubSubTester
 {
     class Program
     {
-        const string FeedToSubscribe = "feed url here";
+        const string FeedToSubscribe = "http://192.168.1.80:2113/streams/User-0d153d8f-0623-46a6-814e-e4df0b87f68c";
         const string HubUrl = PuSHSubscriber.DefaultSubscribeHub;
 
-        const string CallbackUrl = "your callback url here";
+        const string CallbackUrl = "http://192.168.1.80:8080";
         static void Main(string[] args)
         {
             // So trace output will go to the console.
@@ -66,7 +66,7 @@ namespace PubSubTester
                 Console.WriteLine("Writing feed to {0}", saveFilename);
                 using (var writer = XmlWriter.Create(saveFilename))
                 {
-                    args.Feed.SaveAsRss20(writer);
+                    args.Feed.SaveAsAtom10(writer);
                 }
             }
             catch (Exception ex)

@@ -14,14 +14,16 @@ namespace UserService.Api.Controllers
         private readonly ICommandHandler<CreateBasicUser> _createUserCommandHandler;
         private readonly ICommandHandler<AddFriendToUser> _addFriendCommandHandler;
         private readonly ICommandHandler<DisableUser> _disableUserCommandHandler;
-        private readonly ICommandHandler<AddWishListItem> _addWishListItemCommandHandler; 
+        private readonly ICommandHandler<AddWishListItem> _addWishListItemCommandHandler;
+        private readonly ICommandHandler<EnableUser> _enableUserCommandHandler; 
 
-        public UserController(ICommandHandler<CreateBasicUser> createUserCommandHandler, ICommandHandler<AddFriendToUser> addFriendCommandHandler, ICommandHandler<DisableUser> disableUserCommandHandler, ICommandHandler<AddWishListItem> addWishListItemCommandHandler)
+        public UserController(ICommandHandler<CreateBasicUser> createUserCommandHandler, ICommandHandler<AddFriendToUser> addFriendCommandHandler, ICommandHandler<DisableUser> disableUserCommandHandler, ICommandHandler<AddWishListItem> addWishListItemCommandHandler, ICommandHandler<EnableUser> enableUserCommandHandler)
         {
             _createUserCommandHandler = createUserCommandHandler;
             _addFriendCommandHandler = addFriendCommandHandler;
             _disableUserCommandHandler = disableUserCommandHandler;
             _addWishListItemCommandHandler = addWishListItemCommandHandler;
+            _enableUserCommandHandler = enableUserCommandHandler;
         }
 
         public HttpResponseMessage PostCreateBarebonesUser(string email, int? metroid = null)
@@ -51,6 +53,21 @@ namespace UserService.Api.Controllers
             catch (Exception ex)
             {
                 var msg = string.Format("Error Occured on calling PostDisableUser({0}): {1}", gpid, ex);
+                return Request.CreateResponse(HttpStatusCode.InternalServerError, msg);
+            }
+        }
+
+        public HttpResponseMessage PostEnableUser(string gpid)
+        {
+            try
+            {
+                var command = new EnableUser(Guid.Parse(gpid));
+                _enableUserCommandHandler.HandleCommand(command);
+                return Request.CreateResponse(HttpStatusCode.Created);
+            }
+            catch (Exception ex)
+            {
+                var msg = string.Format("Error Occured on calling PostEnableUser({0}): {1}", gpid, ex);
                 return Request.CreateResponse(HttpStatusCode.InternalServerError, msg);
             }
         }

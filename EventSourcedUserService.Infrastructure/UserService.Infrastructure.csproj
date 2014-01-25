@@ -60,6 +60,7 @@
     <Compile Include="CommandHandlers\AddWishListItemCommandHandler.cs" />
     <Compile Include="CommandHandlers\CommandHandlerBase.cs" />
     <Compile Include="CommandHandlers\DisableUserCommandHandler.cs" />
+    <Compile Include="CommandHandlers\EnableUserCommandHandler.cs" />
     <Compile Include="EventPublisher\PushPublisher.cs" />
     <Compile Include="EventStoreUnitOfWorkHandler.cs" />
     <Compile Include="RepositoryFactory.cs" />

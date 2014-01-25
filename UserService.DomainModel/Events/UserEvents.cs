@@ -14,6 +14,11 @@ namespace UserService.DomainModel.Events
             return new UserDisabled(id);
         }
 
+        public static UserEnabled Enabled(UserId id)
+        {
+            return new UserEnabled(id);
+        }
+
         public static UserHasNewFriend NewFriend(UserId gpid, UserId friend, string fName, string lName, 
             int birthdayDay, int birthdayMonth, int birthdayYear)
         {
