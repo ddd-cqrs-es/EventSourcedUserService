@@ -9,7 +9,7 @@
             _result = result;
         }
 
-        public bool Verify(string callbackUrl)
+        public bool Verify(string callbackUrl, string topic, string verifyToken)
         {
             return _result;
         }

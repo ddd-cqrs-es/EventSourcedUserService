@@ -33,6 +33,9 @@
     <Reference Include="nunit.framework">
       <HintPath>..\packages\NUnit.2.6.3\lib\nunit.framework.dll</HintPath>
     </Reference>
+    <Reference Include="RestSharp">
+      <HintPath>..\packages\RestSharp.104.4.0\lib\net4\RestSharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.ServiceModel" />
@@ -41,8 +44,24 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="TechTalk.SpecFlow">
+      <HintPath>..\packages\SpecFlow.1.9.0\lib\net35\TechTalk.SpecFlow.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AcceptanceTests\Features\SubscribingToTopics.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>SubscribingToTopics.feature</DependentUpon>
+    </Compile>
+    <Compile Include="AcceptanceTests\HubClient.cs" />
+    <Compile Include="AcceptanceTests\Steps\PublisherSteps.cs" />
+    <Compile Include="AcceptanceTests\Features\Publishing.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Publishing.feature</DependentUpon>
+    </Compile>
+    <Compile Include="AcceptanceTests\Steps\SubscriberSteps.cs" />
     <Compile Include="FakeFeedProvider.cs" />
     <Compile Include="FakeSubscriptionVerifier.cs" />
     <Compile Include="UnitTests\WhenPublisherRegistersTopics.cs" />
@@ -51,6 +70,15 @@
     <Compile Include="WhenUpdatingTopics.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="AcceptanceTests\Features\Publishing.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>Publishing.feature.cs</LastGenOutput>
+    </None>
+    <None Include="AcceptanceTests\Features\SubscribingToTopics.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>SubscribingToTopics.feature.cs</LastGenOutput>
+    </None>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
@@ -58,10 +86,12 @@
       <Project>{BE479588-96D2-4EBC-9F57-03E6B0BF4D55}</Project>
       <Name>PushHub</Name>
     </ProjectReference>
+    <ProjectReference Include="..\PushSubscriber\PushSubscriber.csproj">
+      <Project>{8FC5F15C-359E-46D6-B378-D37E469400C9}</Project>
+      <Name>PushSubscriber</Name>
+    </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="AcceptanceTests\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

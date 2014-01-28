@@ -2,9 +2,13 @@
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
+using System.Net;
+using System.ServiceModel.Syndication;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml;
 using log4net;
 
 namespace PushHub
@@ -39,7 +43,7 @@ namespace PushHub
             Logger.InfoFormat("New subscriber [{0}] for topic '{1}'", callBackUrl, topicUrl);
 
             //do verification of new subscriber
-            if(!_subscriptionVerifier.Verify(callBackUrl))
+            if(!_subscriptionVerifier.Verify(callBackUrl, topicUrl, verifyToken))
                 Logger.InfoFormat("Subscription from [{0}] was not verified.", callBackUrl);
 
             _topics.AddOrUpdate(topicUrl, s => new List<Subscriber> { new Subscriber(callBackUrl, verifyToken, true) },
@@ -52,7 +56,35 @@ namespace PushHub
 
         public void Update(string topicUrl)
         {
-            throw new NotImplementedException();
+            //go get new content from source (the topic url)
+            var completeContent = _feedProvider.GetCompleteContent(topicUrl);
+            //TODO: diff the content
+            var webClient = new WebClient();
+
+//            var atom10FeedFormatter = completeContent.GetAtom10Formatter();
+//            using (var sWriter = new StringWriter())
+//            using (var xWriter = new XmlTextWriter(sWriter))
+//            {
+//                atom10FeedFormatter.WriteTo(xWriter);
+//                //send diff to the subscribers
+//                foreach (var subscriber in _topics[topicUrl])
+//                {
+//                    webClient.UploadString(subscriber.CallbackUrl, sWriter.GetStringBuilder().ToString());
+//                }
+//            }
+
+            var xmlReader = XmlReader.Create(topicUrl);
+            var feed = SyndicationFeed.Load(xmlReader);
+            //feed.SaveAsAtom10();
+            using(var stream = new StringWriter())
+            using (var writer = new XmlTextWriter(stream))
+            {
+                writer.WriteNode(xmlReader, false);
+                foreach (var subscriber in _topics[topicUrl])
+                {
+                    webClient.UploadString(subscriber.CallbackUrl, stream.GetStringBuilder().ToString());
+                }
+            }
         }
 
         public IEnumerable<string> GetTopics()

@@ -17,6 +17,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PushHub", "PushHub\PushHub.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PushHub.Tests", "PushHub.Tests\PushHub.Tests.csproj", "{88B6BD2F-A5A8-406C-A563-7C730675A67C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PushHub.SelfHosted", "PushHub.SelfHosted\PushHub.SelfHosted.csproj", "{35460AA4-B94A-4B64-9418-7243EC3D2F01}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,10 @@ Global
 		{88B6BD2F-A5A8-406C-A563-7C730675A67C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{88B6BD2F-A5A8-406C-A563-7C730675A67C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{88B6BD2F-A5A8-406C-A563-7C730675A67C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{35460AA4-B94A-4B64-9418-7243EC3D2F01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{35460AA4-B94A-4B64-9418-7243EC3D2F01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{35460AA4-B94A-4B64-9418-7243EC3D2F01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{35460AA4-B94A-4B64-9418-7243EC3D2F01}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
+using System.ServiceModel.Syndication;
 
 namespace PushHub
 {
@@ -18,6 +14,11 @@ namespace PushHub
             _callbackUrl = callbackUrl;
             _verifyToken = verifyToken;
             _verified = verified;
+        }
+
+        public string CallbackUrl
+        {
+            get { return _callbackUrl; }
         }
 
         public void Verify()
@@ -43,6 +44,11 @@ namespace PushHub
         public override int GetHashCode()
         {
             return (_callbackUrl != null ? _callbackUrl.GetHashCode() : 0);
+        }
+
+        public void NotifyContent(SyndicationFeed completeContent)
+        {
+            throw new NotImplementedException();
         }
     }
 }

@@ -2,6 +2,6 @@
 {
     public  interface ISubscriptionVerifier
     {
-        bool Verify(string callbackUrl);
+        bool Verify(string callbackUrl, string topic, string verifyToken);
     }
 }
