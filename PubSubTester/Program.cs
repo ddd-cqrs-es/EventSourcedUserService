@@ -7,10 +7,10 @@ namespace PubSubTester
 {
     class Program
     {
-        const string FeedToSubscribe = "http://192.168.1.80:2113/streams/User-0d153d8f-0623-46a6-814e-e4df0b87f68c";
+        const string FeedToSubscribe = "http://localhost:2113/streams/UserEvents";
         const string HubUrl = PuSHSubscriber.DefaultSubscribeHub;
 
-        const string CallbackUrl = "http://192.168.1.80:8080";
+        const string CallbackUrl = "http://localhost:8080";
         static void Main(string[] args)
         {
             // So trace output will go to the console.

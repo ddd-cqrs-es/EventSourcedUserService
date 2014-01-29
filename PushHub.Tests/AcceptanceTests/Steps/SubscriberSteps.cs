@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Net;
-using System.Text;
-using System.Threading.Tasks;
+using System.ServiceModel.Syndication;
 using NUnit.Framework;
 using PushSubscriber;
 using TechTalk.SpecFlow;
@@ -14,6 +11,8 @@ namespace PushHub.Tests.AcceptanceTests.Steps
     public class SubscriberSteps
     {
         private bool _verifyWasCalled = false;
+        private SyndicationFeed _updatedFeedContent;
+
 
         [Given(@"a subscriber callback is configured to listen at ""(.*)"" with a prefix of ""(.*)""")]
         public void GivenASubscriberCallbackIsConfiguredToListenAtWithAPrefixOf(string callbackUrl, string prefix)
@@ -24,6 +23,10 @@ namespace PushHub.Tests.AcceptanceTests.Steps
                 _verifyWasCalled = true;
                 args.Allow = true;
             };
+            subscriberCallback.PushPost += (sender, args) =>
+                {
+                    _updatedFeedContent = args.Feed;
+                };
             subscriberCallback.Start();
 
             ScenarioContext.Current.Add("SubscriberCallback", subscriberCallback);
@@ -49,7 +52,7 @@ namespace PushHub.Tests.AcceptanceTests.Steps
         [Then(@"subscriber receives updates from the hub")]
         public void ThenSubscriberReceivesUpdatesFromTheHub()
         {
-            ScenarioContext.Current.Pending();
+            Assert.IsNotNull(_updatedFeedContent);
         }
 
 

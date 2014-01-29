@@ -75,12 +75,12 @@ this.ScenarioSetup(scenarioInfo);
 #line 7
  testRunner.Given("A hub is listening at \"http://localhost:4567\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
- testRunner.And("a publisher has registered a topic \"http://localhost:2113/UserEvents1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("a publisher has registered a topic \"http://localhost:2113/streams/UserEvents1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 9
  testRunner.And("a subscriber callback is configured to listen at \"http://localhost:8080\" with a p" +
                     "refix of \"http://+:8080/\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 10
- testRunner.When("I subscribe for the topic \"http://localhost:2113/UserEvents1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I subscribe for the topic \"http://localhost:2113/streams/UserEvents1\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 11
  testRunner.Then("the subscription response status code should be: 204", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 12

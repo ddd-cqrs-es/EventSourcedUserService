@@ -10,7 +10,7 @@ namespace UserService.Infrastructure.EventPublisher
 {
     public static class PushPublisher
     {
-        public const string DefaultHubUrl = "http://192.168.1.86:4567";
+        public const string DefaultHubUrl = "http://localhost:4567";
 
         /// <summary>
 

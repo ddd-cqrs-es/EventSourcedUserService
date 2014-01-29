@@ -61,28 +61,15 @@ namespace PushHub
             //TODO: diff the content
             var webClient = new WebClient();
 
-//            var atom10FeedFormatter = completeContent.GetAtom10Formatter();
-//            using (var sWriter = new StringWriter())
-//            using (var xWriter = new XmlTextWriter(sWriter))
-//            {
-//                atom10FeedFormatter.WriteTo(xWriter);
-//                //send diff to the subscribers
-//                foreach (var subscriber in _topics[topicUrl])
-//                {
-//                    webClient.UploadString(subscriber.CallbackUrl, sWriter.GetStringBuilder().ToString());
-//                }
-//            }
-
-            var xmlReader = XmlReader.Create(topicUrl);
-            var feed = SyndicationFeed.Load(xmlReader);
-            //feed.SaveAsAtom10();
-            using(var stream = new StringWriter())
-            using (var writer = new XmlTextWriter(stream))
+            var atom10FeedFormatter = completeContent.GetAtom10Formatter();
+            using (var sWriter = new StringWriter())
+            using (var xWriter = new XmlTextWriter(sWriter))
             {
-                writer.WriteNode(xmlReader, false);
+                atom10FeedFormatter.WriteTo(xWriter);
+                //send diff to the subscribers
                 foreach (var subscriber in _topics[topicUrl])
                 {
-                    webClient.UploadString(subscriber.CallbackUrl, stream.GetStringBuilder().ToString());
+                    webClient.UploadString(subscriber.CallbackUrl, sWriter.GetStringBuilder().ToString());
                 }
             }
         }

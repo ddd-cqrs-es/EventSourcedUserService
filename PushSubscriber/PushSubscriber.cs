@@ -21,7 +21,7 @@ namespace PushSubscriber
 
     public static class PuSHSubscriber
     {
-        public const string DefaultSubscribeHub = "http://192.168.1.86:4567";
+        public const string DefaultSubscribeHub = "http://localhost:4567";
 
         // for a permanent subscription, specify 0 for subscribeSeconds
         public static HttpStatusCode Subscribe(string hubUrl, string callback,
@@ -70,8 +70,9 @@ namespace PushSubscriber
                 AddParam("hub.secret", secret);
             }
             byte[] postData = Encoding.UTF8.GetBytes(sb.ToString());
-            Debug.WriteLine(string.Format("  hub={0}\r\n  params = {1}", hubUrl, sb.ToString()));
-            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(hubUrl);
+            string subUrl = hubUrl + "/subscribe";
+            Debug.WriteLine(string.Format("  hub={0}\r\n  params = {1}", subUrl, sb.ToString()));
+            HttpWebRequest request = (HttpWebRequest)WebRequest.Create(subUrl);
             request.Method = "POST";
             request.ContentType = "application/x-www-form-urlencoded";
             request.ContentLength = postData.Length;

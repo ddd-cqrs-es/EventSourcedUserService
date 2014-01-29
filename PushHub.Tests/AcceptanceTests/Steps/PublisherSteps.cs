@@ -30,7 +30,8 @@ namespace PushHub.Tests.AcceptanceTests.Steps
         [When(@"the publisher notifies the hub of updates for topic ""(.*)""")]
         public void WhenThePublisherNotifiesTheHubOfUpdatesForTopic(string topic)
         {
-            ScenarioContext.Current.Pending();
+            var hubClient = (HubClient)ScenarioContext.Current["HubClient"];
+            hubClient.Publish(topic);
         }
 
 

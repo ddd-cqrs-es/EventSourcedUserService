@@ -49,7 +49,7 @@ namespace UserService.Infrastructure.CommandHandlers
         {
             Handle(itemCommand);
             WriteUnitOfWork(_unitOfWork);
-            PushPublisher.Publish(PushPublisher.DefaultHubUrl, "http://192.168.1.80:2113/streams/User-0d153d8f-0623-46a6-814e-e4df0b87f68c");
+            PushPublisher.Publish(PushPublisher.DefaultHubUrl + "/publish", "http://localhost:2113/streams/UserEvents");
         }
 
         public abstract void Handle(TCommand command);

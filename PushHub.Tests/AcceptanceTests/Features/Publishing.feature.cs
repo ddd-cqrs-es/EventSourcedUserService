@@ -75,11 +75,11 @@ this.ScenarioSetup(scenarioInfo);
 #line 7
  testRunner.Given("A hub is listening at \"Http://localhost:4567\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 8
- testRunner.When("I publish a new topic \"Http://localhost:2113/UserEvents\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("I publish a new topic \"Http://localhost:2113/streams/UserEvents\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 9
  testRunner.Then("the response status code should be: 204", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line 10
- testRunner.And("the hub will contain my new topic \"Http://localhost:2113/UserEvents\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the hub will contain my new topic \"Http://localhost:2113/streams/UserEvents\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line hidden
             this.ScenarioCleanup();
         }
@@ -94,15 +94,16 @@ this.ScenarioSetup(scenarioInfo);
 #line 13
  testRunner.Given("A hub is listening at \"Http://localhost:4567\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 14
- testRunner.And("the hub contains the topic \"Http://localhost:2113/UserEvents\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the hub contains the topic \"Http://localhost:2113/streams/UserEvents\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 15
  testRunner.Given("a subscriber callback is configured to listen at \"http://localhost:8080\" with a p" +
                     "refix of \"http://+:8080/\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line 16
- testRunner.And("the subscriber is listening for the topic \"Http://localhost:2113/UserEvents\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
+ testRunner.And("the subscriber is listening for the topic \"Http://localhost:2113/streams/UserEven" +
+                    "ts\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
 #line 17
- testRunner.When("the publisher notifies the hub of updates for topic \"Http://localhost:2113/UserEv" +
-                    "ents\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
+ testRunner.When("the publisher notifies the hub of updates for topic \"Http://localhost:2113/stream" +
+                    "s/UserEvents\"", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "When ");
 #line 18
  testRunner.Then("subscriber receives updates from the hub", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Then ");
 #line hidden

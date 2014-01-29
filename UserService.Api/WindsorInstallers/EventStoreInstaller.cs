@@ -23,7 +23,7 @@ namespace UserService.Api.WindsorInstallers
                                                                   UseConsoleLogger().
                                                                   SetDefaultUserCredentials(
                                                                       credentials),
-                                               new IPEndPoint(IPAddress.Parse(ipAddress), 1113),
+                                               new IPEndPoint(IPAddress.Loopback, 1113),
                                                "UserServiceConnection");
                                            connection.Connect();
                                            return connection;
