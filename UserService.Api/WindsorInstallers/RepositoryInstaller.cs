@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using AggregateSource;
-using AggregateSource.EventStore;
+﻿using AggregateSource;
 using Castle.MicroKernel.Registration;
 using Castle.MicroKernel.SubSystems.Configuration;
 using Castle.Windsor;
@@ -21,7 +16,7 @@ namespace UserService.Api.WindsorInstallers
             container.Register(Component
                                    .For<UnitOfWork>()
                                    .ImplementedBy<UnitOfWork>()
-                                   .LifestyleSingleton());
+                                   .LifestyleTransient());
 
             container.Register(Component
                                    .For<IRepository<User>>()

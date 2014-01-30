@@ -17,7 +17,7 @@ namespace PushHub.Tests.UnitTests
             hub.NewTopic(topicUrl);
             hub.NewSubscriberSynchronous(topicUrl, callBackUrl, verifyToken);
 
-            CollectionAssert.Contains(hub.Subscribers(), new Subscriber(callBackUrl, verifyToken, true));
+            CollectionAssert.Contains(hub.Subscribers(), new Subscriber(callBackUrl, true));
         }
 
         [Test]
@@ -32,7 +32,7 @@ namespace PushHub.Tests.UnitTests
             hub.NewSubscriberSynchronous(topicUrl, callBackUrl, verifyToken);
             hub.NewSubscriberSynchronous(topicUrl, callBackUrl, verifyToken);
 
-            CollectionAssert.Contains(hub.Subscribers(), new Subscriber(callBackUrl, verifyToken, true));
+            CollectionAssert.Contains(hub.Subscribers(), new Subscriber(callBackUrl, true));
         }
 
         [Test]

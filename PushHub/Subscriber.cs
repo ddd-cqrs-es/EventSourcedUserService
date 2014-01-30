@@ -7,18 +7,22 @@ namespace PushHub
     {
         private bool _verified = false;
         private readonly string _callbackUrl;
-        private readonly string _verifyToken;
+        private int _position = 0;
 
-        public Subscriber(string callbackUrl, string verifyToken, bool verified)
+        public Subscriber(string callbackUrl, bool verified)
         {
             _callbackUrl = callbackUrl;
-            _verifyToken = verifyToken;
             _verified = verified;
         }
 
         public string CallbackUrl
         {
             get { return _callbackUrl; }
+        }
+
+        public void SetFeedPosition(int position)
+        {
+            _position = position;
         }
 
         public void Verify()

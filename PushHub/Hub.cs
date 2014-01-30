@@ -46,10 +46,10 @@ namespace PushHub
             if(!_subscriptionVerifier.Verify(callBackUrl, topicUrl, verifyToken))
                 Logger.InfoFormat("Subscription from [{0}] was not verified.", callBackUrl);
 
-            _topics.AddOrUpdate(topicUrl, s => new List<Subscriber> { new Subscriber(callBackUrl, verifyToken, true) },
+            _topics.AddOrUpdate(topicUrl, s => new List<Subscriber> { new Subscriber(callBackUrl, true) },
                     (s, list) =>
                     {
-                        list.Add(new Subscriber(callBackUrl, verifyToken, true));
+                        list.Add(new Subscriber(callBackUrl, true));
                         return list;
                     });
         }
@@ -70,6 +70,8 @@ namespace PushHub
                 foreach (var subscriber in _topics[topicUrl])
                 {
                     webClient.UploadString(subscriber.CallbackUrl, sWriter.GetStringBuilder().ToString());
+                    //remember where we are in the feed and updade the subscribers position
+                    //subscriber.SetFeedPosition(Convert.ToInt32(completeContent.Items.Last().Content.AttributeExtensions[new XmlQualifiedName("positionEventNumber")]));
                 }
             }
         }

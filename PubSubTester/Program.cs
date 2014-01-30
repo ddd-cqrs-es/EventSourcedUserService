@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Net;
+using System.ServiceModel.Syndication;
 using System.Xml;
 using PushSubscriber;
 
@@ -53,21 +55,30 @@ namespace PubSubTester
             }
             Debug.Flush();
         }
+
         const string FeedBaseName = "feed";
         const string FeedExtension = ".xml";
+
         static void callback_PushPost(object sender, PushPostEventArgs args)
         {
             Console.WriteLine("{0} - Received update from hub!", DateTime.Now);
             try
             {
-                // Save the update to file.
-                string timestamp = DateTime.Now.ToString("yyyyMMdd_hhmm");
-                string saveFilename = FeedBaseName + "_" + timestamp + FeedExtension;
-                Console.WriteLine("Writing feed to {0}", saveFilename);
-                using (var writer = XmlWriter.Create(saveFilename))
+                Console.WriteLine("Events:");
+                foreach (var update in args.Feed.Items)
                 {
-                    args.Feed.SaveAsAtom10(writer);
+                    //get the content from GES
+                    string evnt = GetContent(update);
+                    Console.WriteLine(evnt);
                 }
+                // Save the update to file.
+//                string timestamp = DateTime.Now.ToString("yyyyMMdd_hhmm");
+//                string saveFilename = FeedBaseName + "_" + timestamp + FeedExtension;
+//                Console.WriteLine("Writing feed to {0}", saveFilename);
+//                using (var writer = XmlWriter.Create(saveFilename))
+//                {
+//                    args.Feed.SaveAsAtom10(writer);
+//                }
             }
             catch (Exception ex)
             {
@@ -75,11 +86,21 @@ namespace PubSubTester
             }
             Console.WriteLine("Done");
         }
+
+        private static WebClient _webClient = new WebClient();
+        private static string GetContent(SyndicationItem syndicationItem)
+        {
+            var evnt = _webClient.DownloadString(syndicationItem.Id);
+            return evnt;
+        }
+
         static void callback_PushVerify(object sender, PushVerifyEventArgs args)
         {
             Console.WriteLine("{0} - Received verify message from hub.", DateTime.Now);
             // Verify all requests.
             args.Allow = true;
         }
+
+        
     }
 }
